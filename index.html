@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kripto Canlı</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200">
+
+<div class="flex justify-center mt-20">
+    <div class="bg-white p-10 shadow-xl rounded-2xl w-96 text-center">
+        <h1 class="text-2xl font-bold text-purple-600 mb-6">Canlı Kripto Fiyatları</h1>
+
+        <p class="font-bold">Bitcoin: <span id="btc">...</span></p>
+        <p class="font-bold">Ethereum: <span id="eth">...</span></p>
+        <p class="font-bold">BNB: <span id="bnb">...</span></p>
+
+        <p class="mt-4 text-gray-500">Veriler gerçek zamanlı geliyor...</p>
+    </div>
+</div>
+
+<script>
+const socket = new WebSocket("ws://localhost:8001");
+
+socket.onopen = () => console.log("WS bağlandı!");
+
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    document.getElementById("btc").innerText = data.bitcoin;
+    document.getElementById("eth").innerText = data.ethereum;
+    document.getElementById("bnb").innerText = data.bnb;
+};
+
+socket.onerror = (e) => console.log("WS hata:", e);
+</script>
+
+</body>
+</html>
