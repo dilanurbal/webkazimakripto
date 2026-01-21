@@ -19,7 +19,8 @@ index.html
 ws_server.py
 kripto.py  
 Veriler.py  
-veriler.json  
+veriler.json 
+ornekcikti.jpeg
 requirements.txt  
 README.md  
 
@@ -30,6 +31,8 @@ Bu sayede farklı coin’ler kolayca çekilebilir ve kod daha esnek olur.
 Not:  
 CoinMarketCap site yapısı değişirse scraper çalışmayabilir. Daha stabil bir sistem için API kullanımı önerilir.
 
+Örnek Çıktı:
+![Örnek çıktı](ornekcikti.jpeg)
 Geliştirici:  
 Dilanur Bal  
 Bilgisayar Mühendisliği Öğrencisi
