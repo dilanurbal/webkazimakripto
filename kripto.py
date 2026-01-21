@@ -1,25 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
 
-def fiyatlari_cek():
-    url = "https://coinmarketcap.com/"
+def fiyatlari_cek(url="https://coinmarketcap.com/", coin_adi="Bitcoin"):
     headers = {"User-Agent": "Mozilla/5.0"}
-
     html = requests.get(url, headers=headers).text
     soup = BeautifulSoup(html, "html.parser")
 
-    def fiyat_bul(coin_adi):
-        satir = soup.find("p", string=coin_adi).find_parent("tr")
-        fiyat_td = satir.find_all("td")[3]   # 3. sütun fiyat
-        fiyat = fiyat_td.text.strip()
-        return fiyat
+    satir = soup.find("p", string=coin_adi)
 
-    btc = fiyat_bul("Bitcoin")
-    eth = fiyat_bul("Ethereum")
-    bnb = fiyat_bul("BNB")
+    if satir is None:
+        return None
 
-    return {
-        "bitcoin": btc,
-        "ethereum": eth,
-        "bnb": bnb
-    }
+    satir = satir.find_parent("tr")
+    fiyat_td = satir.find_all("td")[3]
+    return fiyat_td.text.strip()
+
+
+
